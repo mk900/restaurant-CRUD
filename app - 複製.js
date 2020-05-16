@@ -51,8 +51,9 @@ app.get('/new', (req, res) => {
   res.render('new')
 })
 app.post('/new', (req, res) => {
-  const restaurant = req.body
-  return Restaurant.create(restaurant)
+  const name = req.body.name
+  const category = req.body.category
+  return Restaurant.create({ name, category })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
