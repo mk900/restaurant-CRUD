@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 })
 
 // Create new restaurant
-app.get('/new', (req, res) => {
+app.get('/restaurants/new', (req, res) => {
   res.render('new')
 })
 app.post('/new', (req, res) => {
@@ -67,13 +67,13 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // Update a restaurant info
-app.get('/edit/:id', (req, res) => {
+app.get('/restaurants/edit/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
 })
-app.post('/edit/:id', (req, res) => {
+app.post('/restaurants/edit/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => {
@@ -85,7 +85,7 @@ app.post('/edit/:id', (req, res) => {
 })
 
 //Delete a restaurant
-app.post('/delete/:id', (req, res) => {
+app.post('/restaurants/delete/:id', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
     .then(restaurant => restaurant.remove())
